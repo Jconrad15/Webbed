@@ -9,7 +9,7 @@ public class NodeController : MonoBehaviour
 
     private List<Node> nodes;
 
-    private int nodeCount = 200;
+    private int nodeCount = 250;
 
     void OnEnable()
     {
