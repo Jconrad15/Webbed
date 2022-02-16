@@ -14,6 +14,8 @@ public class Node : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private float forceBounds = 0.2f;
+
     void OnEnable()
     {
         connectedNodes = new List<Node>();
@@ -29,11 +31,11 @@ public class Node : MonoBehaviour
 
     private void Move()
     {
-        float xF = Random.Range(-1f, 1f);
-        float yF = Random.Range(-1f, 1f);
+        float xF = Random.Range(-forceBounds, forceBounds);
+        float yF = Random.Range(-forceBounds, forceBounds);
         Vector2 force = new Vector2(xF, yF);
 
-        rb.AddForce(force, ForceMode2D.Force);
+        rb.AddForce(force, ForceMode2D.Impulse);
 
         cbNodeMoved?.Invoke(identifier);
     }
@@ -45,6 +47,9 @@ public class Node : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Exit if collision object is not a node
+        if (collision.CompareTag("Node") == false) { return; }
+
         Node otherNode = collision.gameObject.GetComponent<Node>();
 
         // Return, if the other node is already connected
@@ -55,6 +60,9 @@ public class Node : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // Exit if collision object is not a node
+        if (collision.CompareTag("Node") == false) { return; }
+
         Node otherNode = collision.gameObject.GetComponent<Node>();
 
         // Return, if the other node is not connected

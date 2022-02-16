@@ -17,8 +17,8 @@ public class Web : MonoBehaviour
     {
         lr = gameObject.AddComponent<LineRenderer>();
         
-        startWidth = Random.Range(0.2f, 0.4f);
-        endWidth = Random.Range(0.2f, 0.4f);
+        startWidth = Random.Range(0.05f, 0.1f);
+        endWidth = Random.Range(0.05f, 0.1f);
         SetLineProperties();
 
         nodeA = A;
