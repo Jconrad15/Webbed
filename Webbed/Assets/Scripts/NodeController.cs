@@ -20,7 +20,10 @@ public class NodeController : MonoBehaviour
             float x = Random.Range(-8f, 8f);
             float y = Random.Range(-5f, 5f);
 
-            nodes.Add(CreateNode(x, y));
+            Node node = CreateNode(x, y);
+            node.identifier = i;
+
+            nodes.Add(node);
         }
     }
 
