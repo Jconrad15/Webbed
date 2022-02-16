@@ -19,6 +19,7 @@ public class Node : MonoBehaviour
     void Update()
     {
 
+
     }
 
     public Vector2 GetPosition()
@@ -58,6 +59,7 @@ public class Node : MonoBehaviour
         if (identifier < otherNode.identifier)
         {
             GameObject line_GO = new GameObject("line to node " + otherNode.identifier.ToString());
+            line_GO.transform.SetParent(gameObject.transform);
             LineRenderer lr = line_GO.AddComponent<LineRenderer>();
 
             Vector3[] positions = new Vector3[2];
