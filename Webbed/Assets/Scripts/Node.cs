@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Node : MonoBehaviour
 {
@@ -11,15 +12,28 @@ public class Node : MonoBehaviour
 
     public Action<int> cbNodeMoved;
 
+    private Rigidbody2D rb;
+
     void OnEnable()
     {
         connectedNodes = new List<Node>();
         webs = new Dictionary<int, Web>();
+
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Move();
+    }
+
+    private void Move()
+    {
+        float xF = Random.Range(-1f, 1f);
+        float yF = Random.Range(-1f, 1f);
+        Vector2 force = new Vector2(xF, yF);
+
+        rb.AddForce(force, ForceMode2D.Force);
 
         cbNodeMoved?.Invoke(identifier);
     }
@@ -29,7 +43,7 @@ public class Node : MonoBehaviour
         return gameObject.transform.position;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Node otherNode = collision.gameObject.GetComponent<Node>();
 
@@ -39,7 +53,7 @@ public class Node : MonoBehaviour
         CreateWeb(otherNode);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         Node otherNode = collision.gameObject.GetComponent<Node>();
 

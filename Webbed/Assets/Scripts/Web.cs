@@ -9,9 +9,17 @@ public class Web : MonoBehaviour
 
     private LineRenderer lr;
 
+    private float startWidth;
+    private float endWidth;
+    private Color32 color = new Color32(173, 173, 184, 255);
+
     public void Setup(Node A, Node B)
     {
         lr = gameObject.AddComponent<LineRenderer>();
+        
+        startWidth = Random.Range(0.2f, 0.4f);
+        endWidth = Random.Range(0.2f, 0.4f);
+        SetLineProperties();
 
         nodeA = A;
         nodeB = B;
@@ -21,6 +29,21 @@ public class Web : MonoBehaviour
 
         SetLinePoint(A);
         SetLinePoint(B);
+    }
+
+    private void SetLineProperties()
+    {
+        // Color
+        lr.startColor = color;
+        lr.endColor = color;
+
+        // Width
+        lr.startWidth = startWidth;
+        lr.endWidth = endWidth;
+
+        // Material
+        Material whiteDiffuseMat = new Material(Shader.Find("Sprites/Default"));
+        lr.material = whiteDiffuseMat;
     }
 
     public void DestroyWeb()
