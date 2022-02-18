@@ -75,13 +75,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.004258169, y: 0.2511556}
-  - {x: -0.12389958, y: 0.0043876907}
-  - {x: -0.12540907, y: 0.0034060962}
-  - {x: -0.12610719, y: -0.007486347}
-  - {x: 0.0019438117, y: -0.25115564}
-  - {x: 0.12572744, y: 0.0009463439}
-  - {x: 0.007423522, y: 0.2550496}
+  - {x: 0, y: 0.25}
+  - {x: -0.125, y: 0}
+  - {x: 0, y: -0.25}
+  - {x: 0.125, y: 0}
+  - {x: 0, y: 0.25}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -103,9 +101,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &6673406644073641357
 GameObject:
